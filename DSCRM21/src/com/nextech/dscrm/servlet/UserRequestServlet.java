@@ -34,7 +34,8 @@ public class UserRequestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//System.out.println("Inside goGet login");
+		System.out.println("Inside goGet login");
+//		request.getRequestDispatcher("/userRequest.jsp").forward(request, response);
 	}
 
 	/**
@@ -74,7 +75,7 @@ public class UserRequestServlet extends HttpServlet {
 	        }
 	 
 	        out.close();
-	        request.getRequestDispatcher("/userRequest.jsp").forward(request, response);
+	        request.getRequestDispatcher("/userRequest.JSP").forward(request, response);
 	        System.out.println("Inside post login");
 	}
 	public int saveUserRequest(UserRequest userRequest)

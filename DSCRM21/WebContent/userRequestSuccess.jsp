@@ -8,6 +8,10 @@
 </head>
 <body>
       %%%%%%%%   Your data inserted successfully  %%%%%%%%%%
+      <%
+      request.getRequestDispatcher("/update.jsp").forward(request,
+              response);
+      %>
 
 </body>
 </html>

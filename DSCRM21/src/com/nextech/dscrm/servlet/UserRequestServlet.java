@@ -1,6 +1,7 @@
 package com.nextech.dscrm.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,31 +28,46 @@ public class UserRequestServlet extends HttpServlet {
 	static String email;
 	static String Requerment;
 	static String contact;
-	static String userid;
+	static int userid;
 
 	public UserRequestServlet() {
 		super();
 	}
 
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+	}
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
+			response.setContentType("text/html");
+			PrintWriter out=response.getWriter();
 			int rowid = UserRequestServlet
 					.saveUserRequest(userRequest, request);
-			if (rowid == 0) {
-				request.getRequestDispatcher("/userRequestFailure.jsp")
-						.forward(request, response);
+			if (rowid> 0) {
+				 out.print("<p>Record saved successfully!</p>"); 
+				 request.getRequestDispatcher("userRequest.jsp").include(request, response);  
 			} else {
-				request.getRequestDispatcher("/userRequestSuccess.jsp").forward(request,
-						response);
+				 out.println("Sorry! unable to save record");  
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		// this is upadte method
+		UserRequestServlet userrequest=new UserRequestServlet();
+		userrequest.doPut(request, response);
+		
 
+	}
+
+	protected void doPut(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
+			response.setContentType("text/html");
+			PrintWriter out=response.getWriter();
 			UserRequestServlet.update(userRequest, request);
+			request.getRequestDispatcher("update.jsp").forward(request, response);
 		} catch (ClassCastException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,17 +75,20 @@ public class UserRequestServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//this is delete method
+System.out.println("i am in put");
+	}
+	protected void doDelete(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			UserRequestServlet.delete();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println("i am in post method");
+
 	}
 
+	// insert method
 	public static int saveUserRequest(UserRequest userRequest,
 			HttpServletRequest request) throws ClassNotFoundException {
 		userRequest = new UserRequest();
@@ -77,7 +96,7 @@ public class UserRequestServlet extends HttpServlet {
 		loginName = request.getParameter("name");
 		email = request.getParameter("email");
 		Requerment = request.getParameter("requirementDescription");
-	 contact = request.getParameter("mobile");
+		contact = request.getParameter("mobile");
 		ResultSet rs = null;
 
 		String sql = "insert into userrequest(name,email,descrption,mobile_number) values ('"
@@ -85,9 +104,9 @@ public class UserRequestServlet extends HttpServlet {
 				+ "','"
 				+ email
 				+ "','"
-				+ contact
+				+ Requerment
 				+ "','"
-				+ Requerment + "');";
+				+ contact + "');";
 		Connection conn = null;
 		int generatedKey = 0;
 		PreparedStatement ps = null;
@@ -113,71 +132,66 @@ public class UserRequestServlet extends HttpServlet {
 		return generatedKey;
 	}
 
+	// update method
 	public static void update(UserRequest userRequest,
 			HttpServletRequest request) throws ClassCastException, SQLException {
 		System.out.println("i am in update");
 		userRequest = new UserRequest();
+		int status=0;
 
 		loginName = request.getParameter("name");
 		email = request.getParameter("email");
 		Requerment = request.getParameter("requirementDescription");
 		contact = request.getParameter("mobile");
-		 userid       =request.getParameter("userid");
-		 String sql = "update userrequest set name=?,email=?,descrption=?,mobile_number=? where id=?";
-         Connection con = null;
-         PreparedStatement prep = null;
+		String sql = "update userrequest set name=?,email=?,descrption=?,mobile_number=? where id=?";
+		Connection con = null;
+		PreparedStatement prep = null;
 
-         try
-         {
-             Class.forName("com.mysql.jdbc.Driver");
-             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dscrm", "root", "root");
-             prep = con.prepareStatement(sql);
-             prep.setString(1, "loginName");
-             prep.setString(2, "email");
-             prep.setString(3, "Requerment");
-             prep.setString(4, "contact");
-             prep.setString(5, "userid");
-             prep.executeUpdate();
-             prep.close();
-             userRequest.setName(loginName);
- 			userRequest.setEmail(email);
- 			userRequest.setMobilenumber(contact);
- 			userRequest.setRequerment(Requerment);
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = (Connection) DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/dscrm", "root", "root");
+			prep = con.prepareStatement(sql);
+			prep.setString(1, "loginName");
+			prep.setString(2, "email");
+			prep.setString(3, "Requerment");
+			prep.setString(4, "contact");
+			prep.setString(5, "userid");
+			prep.executeUpdate();
+			prep.close();
+			userRequest.setName(loginName);
+			userRequest.setEmail(email);
+			userRequest.setMobilenumber(contact);
+			userRequest.setRequerment(Requerment);
+			userRequest.setUserid(userid);
 
-         } 
-         catch (ClassNotFoundException e)
-         {
-             // TODO Auto-generated catch block
-             e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 
-         }
-         System.out.println("successfully update");
-     }
+		}
+		System.out.println("successfully update");
+	}
 
-	public static  String delete() throws SQLException
-    {
+	// delete method
+	public static void delete() throws SQLException {
 
-        String sql = "delete form userrequest where name=?";
-        Connection con = null;
-        PreparedStatement prep = null;
+		String sql = "delete form userrequest where name=?";
+		Connection con = null;
+		PreparedStatement prep = null;
 
-        try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dscrm", "root", "root");
-            prep = con.prepareStatement(sql);
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = (Connection) DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/dscrm", "root", "root");
+			prep = con.prepareStatement(sql);
 
-        } 
-        catch (ClassNotFoundException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 
-        }
-        return "successfully delete";
-    }
+		}
 
-
+	}
 
 }
-

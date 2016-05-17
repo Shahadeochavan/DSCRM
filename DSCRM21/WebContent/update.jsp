@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="UserRequestServlet" method="post">
+<form action="UserRequestServlet" method="put">
 <div style="text-align:center;display: block;">
 <div style="text-align: center; width: 40%;border: 1px solid grey;">
      Name: <input type="text" style="padding: 10px;margin: 5px;" name="name"><br></br>

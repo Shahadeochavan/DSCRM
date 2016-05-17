@@ -1,7 +1,7 @@
 package com.nextech.dscrm.pojo;
 
 public class UserRequest {
-	private String userid;
+	private int userid;
 	private String name;
 	private String email;
 	private String  requerment;
@@ -30,10 +30,10 @@ public class UserRequest {
 	public void setMobilenumber(String mobilenumber) {
 		this.mobilenumber = mobilenumber;
 	}
-	public String getUserid() {
+	public int getUserid() {
 		return userid;
 	}
-	public void setUserid(String userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 

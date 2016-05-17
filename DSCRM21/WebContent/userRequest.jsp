@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,14 +16,17 @@
     Email: <input type="text" style="padding: 10px;margin: 5px;" name="email"><br></br>
      Requerment: <input type="text" style="padding: 10px;margin: 5px;" name="requirementDescription"><br></br>
     mobilenumber:<input type="text" style="padding: 10px;margin: 5px;" name="mobile"><br></br>
-    <input class="btn btn-default" type="submit" value="submit">
-    
+    <input class="btn btn-default" type="submit" value="save record">
+   
     <div>
     <span class="error" style="padding: 10px;margin: 5px;">${error}</span>
     </div>
 </div>    
 </div>    
 </form>
+<a href="UserRequestServlet">update data</a> 
+
+    
 
 </body>
 </html>

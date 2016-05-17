@@ -4,14 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Request Success </title>
+<title>Insert title here</title>
 </head>
 <body>
-      %%%%%%%%   Your data inserted successfully  %%%%%%%%%%
-      <%
-      request.getRequestDispatcher("/update.jsp").forward(request,
-              response);
-      %>
+Update is failure
 
 </body>
 </html>

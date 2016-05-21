@@ -1,5 +1,7 @@
 package com.nextech.dscrm.pojo;
 
+import java.util.List;
+
 public class UserRequest {
 	private int userid;
 	private String name;
@@ -33,8 +35,16 @@ public class UserRequest {
 	public int getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserid(int string) {
+		this.userid = string;
+	}
+	public void setUserid(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public static List<UserRequest> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

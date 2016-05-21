@@ -17,6 +17,8 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import com.nextech.dscrm.pojo.UserRequest;
 
+
+
 /**
  * Servlet implementation class UserRequestServlet
  */
@@ -137,8 +139,6 @@ System.out.println("i am in put");
 			HttpServletRequest request) throws ClassCastException, SQLException {
 		System.out.println("i am in update");
 		userRequest = new UserRequest();
-		int status=0;
-
 		loginName = request.getParameter("name");
 		email = request.getParameter("email");
 		Requerment = request.getParameter("requirementDescription");

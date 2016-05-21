@@ -38,10 +38,6 @@ public class UserRequest {
 	public void setUserid(int string) {
 		this.userid = string;
 	}
-	public void setUserid(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 	public static List<UserRequest> getAllEmployees() {
 		// TODO Auto-generated method stub
 		return null;

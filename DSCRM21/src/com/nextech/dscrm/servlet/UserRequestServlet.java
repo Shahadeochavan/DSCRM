@@ -30,6 +30,7 @@ public class UserRequestServlet extends HttpServlet {
 	static String email;
 	static String Requerment;
 	static String contact;
+
 	static int userid;
 
 	public UserRequestServlet() {
@@ -77,17 +78,18 @@ public class UserRequestServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 System.out.println("i am in put");
 	}
 	protected void doDelete(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		try {
 			UserRequestServlet.delete();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	// insert method
@@ -195,3 +197,4 @@ System.out.println("i am in put");
 	}
 
 }
+

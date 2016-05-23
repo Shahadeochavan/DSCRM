@@ -8,8 +8,6 @@
 </head>
 <body>
 update is succssfully
-<%
-%>
 
 </body>
 </html>

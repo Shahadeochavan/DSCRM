@@ -51,7 +51,7 @@ public class UserRequestServlet extends HttpServlet {
 					.saveUserRequest(userRequest, request);
 			if (rowid> 0) {
 				 out.print("<p>Record saved successfully!</p>"); 
-				 request.getRequestDispatcher("userRequest.jsp").include(request, response);  
+				 request.getRequestDispatcher("userRequest.jsp").forward(request, response);  
 			} else {
 				 out.println("Sorry! unable to save record");  
 			}
@@ -70,7 +70,7 @@ public class UserRequestServlet extends HttpServlet {
 			response.setContentType("text/html");
 			PrintWriter out=response.getWriter();
 			UserRequestServlet.update(userRequest, request);
-			request.getRequestDispatcher("update.jsp").forward(request, response);
+			
 		} catch (ClassCastException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,7 +79,7 @@ public class UserRequestServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-System.out.println("i am in put");
+		System.out.println("i am in put");
 	}
 	protected void doDelete(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

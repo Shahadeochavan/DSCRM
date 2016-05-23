@@ -9,7 +9,7 @@
 <body>
 <h1>DSCRM</h1>
 
-<form action="UserRequestServlet" method="post">
+<form action="UserRequestServlet" method="put">
 <div style="text-align:center;display: block;">
 <div style="text-align: center; width: 40%;border: 1px solid grey;">
      Name: <input type="text" style="padding: 10px;margin: 5px;" name="name"><br></br>
@@ -17,7 +17,6 @@
      Requerment: <input type="text" style="padding: 10px;margin: 5px;" name="requirementDescription"><br></br>
     mobilenumber:<input type="text" style="padding: 10px;margin: 5px;" name="mobile"><br></br>
     <input class="btn btn-default" type="submit" value="save record">
-   
     <div>
     <span class="error" style="padding: 10px;margin: 5px;">${error}</span>
     </div>
@@ -25,7 +24,6 @@
 </div>    
 </form>
 <a href="UserRequestServlet">update data</a> 
-
     
 
 </body>

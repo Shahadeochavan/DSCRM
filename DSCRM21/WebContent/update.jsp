@@ -16,8 +16,7 @@
     mobilenumber:<input type="text" style="padding: 10px;margin: 5px;" name="mobile"><br></br>
     ID: <input type="text" style="padding: 10px;margin: 5px;" name="ID"><br></br>
     <input class="btn btn-default" type="submit" value="submit">
-    
-    <div>
+     <div>
     <span class="error" style="padding: 10px;margin: 5px;">${error}</span>
     </div>
 </div>    
